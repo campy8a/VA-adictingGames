@@ -50,9 +50,11 @@ text-align:left;
 <div id="description">
   <p>
   This visualization shows the the games players are spending the most amount of hours according to Steam<br>
-  Info from: https://www.kaggle.com/tamber/steam-video-games/data
-  Disclamer: <br>This data is not used in it's entirety since the amount if data might put your explorer slow. <br>
-  In order to see the visualization you need to allow unsafe scripts since I used D3.V3
+    Each of the red nodes is the id of a player <br>
+    The blue nodes are games <br>
+    If the link is green, the user has more than 20 hours of total gametime <br>
+    Fun fact: the usual game has 8 to 12 hours of total playtime
+  
 
   </p>
 </div>
@@ -10047,12 +10049,17 @@ force.on("tick", function() {
     .attr("y1", function(d) { return d.source.y; })
     .attr("x2", function(d) { return d.target.x; })
     .attr("y2", function(d) { return d.target.y; })
-  .style("stroke", function(d){if(d.count<10){return "Green";}else{return "WHITE";}});
+  .style("stroke", function(d){if(d.count<20){return "Green";}else{return "WHITE";}});
 
   node.attr("cx", function(d) { return d.x; })
     .attr("cy", function(d) { return d.y; });
 });
 
 </script>
+  
+  <p>Info from: https://www.kaggle.com/tamber/steam-video-games/data
+  Disclamer: <br>This data is not used in it's entirety since the amount if data might put your explorer slow. <br>
+  In order to see the visualization you need to allow unsafe scripts since I used D3.V3
+  </p>
 </body>
 </html>
