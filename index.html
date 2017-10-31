@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>force-layout</title>
+  <!-- dc.mera Usar https para que el navegador no bloquee este script -->
   <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <!-- dc.mera este archivo no existe en el repositorio-->
   <script src="d3.min.js"></script>
 <style>
 
@@ -68,7 +70,8 @@ text-align:left;
 
 
 <script>
-
+// dc.mera es mejor describir el dataset en otro archivo,
+// hace muy extenso y poco mantenible el codigo fuente de la visualizacion
 var dataset = {
   nodes: [
   {
@@ -9986,6 +9989,11 @@ var dataset = {
 ]
 }
 
+// dc.mera
+// El grafo es muy denso, tal vez la matrix de adyacencia podria haber facilitado ver la relacion de horas jugada
+// de cada persona por video-juego
+// Tambien podria haberse dibujado solamente aquellos enlaces que superen cierto umbral, por ejemplo, +20h al dia
+
 var width = 1280;
 var height = 720;
 r=10;
@@ -10011,6 +10019,20 @@ var link = svg.selectAll(".link")
   .append("line")
   .attr("class", "link");
 
+/*
+dc.mera
+Los evento onMouseOver y onMouseOut aplicados sobre los enlaces pueden ayudar a resaltar 
+las relaciones y navegar mejor por el grafo
+
+link.on("mouseover", function() {
+        d3.select(this)
+          .style("stroke-width", 8).style('stroke','red');
+    });
+link.on("mouseout", function(d) {
+        d3.select(this)
+          .style("stroke-width", d.value).style('stroke','black');
+    });
+*/
 
 var node = svg.selectAll(".node")
   .data(dataset.nodes)
@@ -10019,6 +10041,8 @@ var node = svg.selectAll(".node")
   .attr("class", "node")
   .attr("r", 10)
   .style("fill", function(d) {
+    // dc.mera En javascript es mejor usar el operador ==== 
+    // por ejemplo "300" == 300 es verdadero
     if(d.type == "g"){
       return "blue";
     }else{
